@@ -8,21 +8,28 @@ import java.nio.file.Paths;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+//@RestController
 @Controller
 public class FileUploadController {
   public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
 
-  @RequestMapping("/")
-
+//  @RequestMapping("/")
+  @GetMapping("/")
   public String UploadPage(Model model) {
 
 	  return "uploadview";
   }
-  @RequestMapping("/upload")
+//  @RequestMapping("/upload")
+//  @GetMapping("/upload")
+  @PostMapping(path = "/upload")
+
   public String upload(Model model,@RequestParam("files") MultipartFile[] files) {
 	  System.out.println("unload directory  name" + uploadDirectory );
 	  StringBuilder fileNames = new StringBuilder();
